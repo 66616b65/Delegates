@@ -1,7 +1,7 @@
 ﻿
 namespace VPEntity
 {
-    partial class AddItemForm
+    partial class UpdateItemForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace VPEntity
             this.lblName = new System.Windows.Forms.Label();
             this.lblManufacturer = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -50,8 +50,6 @@ namespace VPEntity
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(183, 22);
             this.txtId.TabIndex = 0;
-            this.txtId.Validating += new System.ComponentModel.CancelEventHandler(this.txtId_Validating);
-            this.txtId.Validated += new System.EventHandler(this.txtId_Validated);
             // 
             // txtName
             // 
@@ -116,17 +114,17 @@ namespace VPEntity
             this.lblPrice.TabIndex = 7;
             this.lblPrice.Text = "Цена";
             // 
-            // btnAdd
+            // btnUpdate
             // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Location = new System.Drawing.Point(329, 277);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(80, 30);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Добавить";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUpdate.Location = new System.Drawing.Point(329, 277);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(80, 30);
+            this.btnUpdate.TabIndex = 8;
+            this.btnUpdate.Text = "Изменить";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnCancel
             // 
@@ -144,14 +142,14 @@ namespace VPEntity
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // AddItemForm
+            // UpdateItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(530, 328);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblManufacturer);
             this.Controls.Add(this.lblName);
@@ -160,9 +158,10 @@ namespace VPEntity
             this.Controls.Add(this.txtManufacturer);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtId);
-            this.Name = "AddItemForm";
+            this.Name = "UpdateItemForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Добавить новый товар";
+            this.Text = "Изменить товар";
+            this.Load += new System.EventHandler(this.UpdateItemForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -179,7 +178,7 @@ namespace VPEntity
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblManufacturer;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider;
     }

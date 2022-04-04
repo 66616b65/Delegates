@@ -11,30 +11,16 @@ using System.Text.RegularExpressions;
 
 namespace VPEntity
 {
-    public partial class AddItemForm : Form
+    public partial class UpdateItemForm : Form
     {
+        public Item oldItem;
         private int id;
         private string name;
         private string manufacturer;
         private decimal price;
-        public AddItemForm()
+        public UpdateItemForm()
         {
             InitializeComponent();
-        }
-
-        private void txtId_Validating(object sender, CancelEventArgs e)
-        {
-            string input = txtId.Text.Trim();
-            if (Regex.IsMatch(input, @"(?<=\s|^)\d+(?=\s|$)"))
-            {
-                errorProvider.SetError(txtId, String.Empty);
-                e.Cancel = false;
-            }
-            else
-            {
-                errorProvider.SetError(txtId, "Ошибка!");
-                //e.Cancel = true;
-            }
         }
 
         private void txtName_Validating(object sender, CancelEventArgs e)
@@ -82,11 +68,6 @@ namespace VPEntity
             }
         }
 
-        private void txtId_Validated(object sender, EventArgs e)
-        {
-            id = Convert.ToInt32(txtId.Text.Trim());
-        }
-
         private void txtName_Validated(object sender, EventArgs e)
         {
             name = txtName.Text.Trim();
@@ -108,37 +89,46 @@ namespace VPEntity
             this.Close();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             DialogResult = ValidateChildren() ? DialogResult.OK : DialogResult.None;
             if (DialogResult == DialogResult.OK)
             {
-                AddItem();
+                UpdateItem();
             }
             this.Close();
         }
 
-        private void AddItem()
+        private void UpdateItem()
         {
             try
             {
                 using (var db = new SupplyModel())
                 {
-                    db.Item.Add(new Item
-                    {
-                        ID = id,
-                        Name = name,
-                        Manufacturer = manufacturer,
-                        Price = price
-                    });
+                    Item item = db.Item.Where(x => x.ID == id).First();
+                    item.Name = name;
+                    item.Manufacturer = manufacturer;
+                    item.Price = price;
                     db.SaveChanges();
                 }
-                MessageBox.Show("Данные добавлены!", "Добавлено", MessageBoxButtons.OK);
+                MessageBox.Show("Данные изменены!", "Изменено", MessageBoxButtons.OK);
             }
             catch (Exception)
             {
                 MessageBox.Show("Ошибка в данных!", "Ошибка", MessageBoxButtons.OK);
             }
+        }
+
+        private void UpdateItemForm_Load(object sender, EventArgs e)
+        {
+            txtId.Text = oldItem.ID.ToString();
+            txtName.Text = oldItem.Name;
+            txtManufacturer.Text = oldItem.Manufacturer;
+            txtPrice.Text = oldItem.Price.ToString();
+
+            //Артикул нельзя поменять
+            txtId.Enabled = false;
+            id = oldItem.ID;
         }
     }
 }
