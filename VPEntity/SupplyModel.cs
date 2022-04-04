@@ -32,8 +32,8 @@ namespace VPEntity
 
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.Supply)
-                .WithRequired(e => e.Item1)
-                .HasForeignKey(e => e.Item);
+                .WithRequired(e => e.Item)
+                .HasForeignKey(e => e.ItemID);
 
             modelBuilder.Entity<Supplier>()
                 .Property(e => e.Name)
@@ -49,8 +49,8 @@ namespace VPEntity
 
             modelBuilder.Entity<Supplier>()
                 .HasMany(e => e.Supply)
-                .WithRequired(e => e.Supplier1)
-                .HasForeignKey(e => e.Supplier);
+                .WithRequired(e => e.Supplier)
+                .HasForeignKey(e => e.SupplierID);
         }
     }
 }

@@ -64,6 +64,7 @@ namespace VPEntity
         private void ItemForm_Load(object sender, EventArgs e)
         {
             SetItemGrid();
+            comboBox.DataSource = GetSuppliers();
         }
 
         private void addItem_Click(object sender, EventArgs e)
@@ -77,7 +78,7 @@ namespace VPEntity
 
         private void removeItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить этот элемент?", 
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить этот элемент?",
                 "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -115,6 +116,38 @@ namespace VPEntity
                     SetItemGrid();
                 }
 
+            }
+        }
+
+        public IEnumerable GetSupplies()
+        {
+            using (var db = new SupplyModel())
+            {
+                var supplies = from supply in db.Supply
+                               select new
+                               {
+                                   supply.Date,
+                                   Supplier = supply.Supplier.Name,
+                                   supply.ItemID,
+                                   Item = supply.Item.Name,
+                                   supply.Volume,
+                                   Overall = supply.Volume * supply.Item.Price
+                               };
+                return supplies.ToList();
+            }
+        }
+
+        public IEnumerable GetSuppliers()
+        {
+            using (var db = new SupplyModel())
+            {
+                var suppliers = from supplier in db.Supplier
+                               select new
+                               {
+                                   supplier.ID,
+                                   supplier.Name
+                               };
+                return suppliers.ToList();
             }
         }
     }

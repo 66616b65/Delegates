@@ -12,12 +12,12 @@ namespace VPEntity
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Supplier { get; set; }
+        public int SupplierID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Item { get; set; }
+        public int ItemID { get; set; }
 
         [Key]
         [Column(Order = 2, TypeName = "date")]
@@ -25,8 +25,8 @@ namespace VPEntity
 
         public int? Volume { get; set; }
 
-        public virtual Item Item1 { get; set; }
+        public virtual Item Item { get; set; }
 
-        public virtual Supplier Supplier1 { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }

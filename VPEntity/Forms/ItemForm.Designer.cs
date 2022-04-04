@@ -45,6 +45,7 @@ namespace VPEntity
             this.updateItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemGrid = new System.Windows.Forms.DataGridView();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid0)).BeginInit();
             this.itemContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
@@ -194,12 +195,21 @@ namespace VPEntity
             this.itemGrid.Size = new System.Drawing.Size(817, 288);
             this.itemGrid.TabIndex = 1;
             // 
+            // comboBox
+            // 
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(12, 260);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(234, 24);
+            this.comboBox.TabIndex = 2;
+            // 
             // ItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(834, 368);
+            this.Controls.Add(this.comboBox);
             this.Controls.Add(this.itemGrid);
             this.Controls.Add(this.itemGrid0);
             this.Name = "ItemForm";
@@ -226,6 +236,7 @@ namespace VPEntity
         private System.Windows.Forms.ToolStripMenuItem updateItem;
         private System.Windows.Forms.ToolStripMenuItem removeItem;
         private System.Windows.Forms.DataGridView itemGrid;
+        private System.Windows.Forms.ComboBox comboBox;
     }
 }
 
