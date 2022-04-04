@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VPEntity
 {
-    public partial class Form1 : Form
+    public partial class AddItemForm : Form
     {
-        public Form1()
+        public AddItemForm()
         {
             InitializeComponent();
         }
